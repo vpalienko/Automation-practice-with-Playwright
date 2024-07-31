@@ -14,6 +14,8 @@ run `pytest -m smoke` to run smoke tests only
 
 run `pytest -m feature` to run feature tests only
 
-run with `--headed` to run tests in headed mode (headless mode is set by default)
+By default, tests are run in headed mode (to run tests in headless mode, remove `--headed` in `pytest.ini -> addopts`).
+
+run with `--slowmo 500` to slow down tests by 500 milliseconds
 
 run with `--numprocesses auto` to run tests in parallel
