@@ -7,7 +7,7 @@
 3. install all dependencies: `pip install -r requirements.txt`
 4. install Playwright browsers: `playwright install`
 
-### Run tests
+### Run tests:
 run `pytest` to run all tests in the project
 
 run `pytest -m smoke` to run smoke tests only
