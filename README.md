@@ -19,3 +19,5 @@ By default, tests are run in headed mode (to run tests in headless mode, remove 
 run with `--slowmo 500` to slow down tests by 500 milliseconds
 
 run with `--numprocesses auto` to run tests in parallel
+
+run with `--verbose` to get detailed output
