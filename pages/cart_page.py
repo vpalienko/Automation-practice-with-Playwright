@@ -8,5 +8,7 @@ class CartPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
 
+        self.empty_cart_info_message = page.get_by_text("No coffee")
+
     def cart_item(self, coffee_type):
         return self.page.get_by_role("listitem").get_by_text(coffee_type, exact=True)
