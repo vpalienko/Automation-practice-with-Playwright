@@ -10,5 +10,5 @@ class CartPage(BasePage):
 
         self.empty_cart_info_message = page.get_by_text("No coffee")
 
-    def cart_item(self, coffee_type):
+    def cart_content_item(self, coffee_type):
         return self.page.get_by_role("listitem").get_by_text(coffee_type, exact=True)

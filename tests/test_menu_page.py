@@ -21,4 +21,4 @@ def test_add_coffee_to_cart(menu_page, cart_page, coffee_type, coffee_price):
     expect(menu_page.total_price).to_contain_text(coffee_price)
     menu_page.navigate_to_cart()
     expect(cart_page.total_price).to_contain_text(coffee_price)
-    expect(cart_page.cart_item(coffee_type)).to_be_visible()
+    expect(cart_page.cart_content_item(coffee_type)).to_be_visible()
