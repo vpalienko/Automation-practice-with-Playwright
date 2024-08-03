@@ -23,3 +23,10 @@ def test_double_click_changes_coffee_title_to_chinese(menu_page, coffee_type, ch
     menu_page.open()
     menu_page.double_click_on_coffee_cup_title(coffee_type)
     expect(menu_page.coffee_cup_title(coffee_type)).to_contain_text(chinese_title)
+
+
+@mark.smoke
+def test_navigation_to_cart_page_from_menu_page(menu_page, cart_page):
+    menu_page.open()
+    menu_page.navigate_to_cart()
+    expect(cart_page.page).to_have_url(cart_page.url)
