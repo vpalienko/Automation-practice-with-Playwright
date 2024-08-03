@@ -3,7 +3,7 @@ from pytest import mark
 from data.data_for_tests import coffee_list, coffee_translations
 
 
-@mark.smoke
+@mark.data_driven
 @mark.parametrize("coffee_type, coffee_price", coffee_list)
 def test_add_coffee_to_cart(menu_page, cart_page, coffee_type, coffee_price):
     menu_page.open()
@@ -17,6 +17,7 @@ def test_add_coffee_to_cart(menu_page, cart_page, coffee_type, coffee_price):
 
 
 @mark.feature
+@mark.data_driven
 @mark.parametrize("coffee_type, chinese_title", coffee_translations)
 def test_double_click_changes_coffee_title_to_chinese(menu_page, coffee_type, chinese_title):
     menu_page.open()
