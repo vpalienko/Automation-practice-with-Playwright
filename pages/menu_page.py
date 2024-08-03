@@ -10,8 +10,8 @@ class MenuPage(BasePage):
 
         self.coffee_cups = page.get_by_role("listitem").filter(has=page.locator(".cup"))
 
-    def click_on_coffee_cup(self, coffee_type):
-        self.page.get_by_label(coffee_type, exact=True).click()
+    def click_on_coffee_cup(self, coffee_type, **kwargs):
+        self.page.get_by_label(coffee_type, exact=True).click(**kwargs)
 
     def coffee_cup_title(self, coffee_type):
         return self.coffee_cups.filter(has=self.page.get_by_label(coffee_type, exact=True)).get_by_role("heading")
