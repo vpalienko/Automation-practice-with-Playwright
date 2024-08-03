@@ -7,7 +7,8 @@ class BasePage:
     def __init__(self, page: Page):
         self.page = page
 
-        self.cart_navbar_item = page.get_by_role("link", name="cart")
+        self.menu_navbar_item = page.get_by_role("link", name="menu page")
+        self.cart_navbar_item = page.get_by_role("link", name="cart page")
         self.total_price = page.get_by_role("button", name="checkout")
 
     def open(self):
@@ -15,3 +16,6 @@ class BasePage:
 
     def navigate_to_cart(self):
         self.cart_navbar_item.click()
+
+    def navigate_to_menu(self):
+        self.menu_navbar_item.click()
