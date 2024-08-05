@@ -19,3 +19,13 @@ coffee_translations = [("Espresso", "特浓咖啡"),
                        ("Cafe Latte", "拿铁"),
                        ("Espresso Con Panna", "浓缩康宝蓝"),
                        ("Cafe Breve", "半拿铁")]
+
+coffee_names = ["Espresso",
+                "Espresso Macchiato",
+                "Cappuccino",
+                "Mocha",
+                "Flat White",
+                "Americano",
+                "Cafe Latte",
+                "Espresso Con Panna",
+                "Cafe Breve"]
