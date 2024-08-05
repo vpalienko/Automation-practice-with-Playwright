@@ -1,6 +1,6 @@
 from playwright.sync_api import expect
 from pytest import mark
-from data.data_for_tests import coffee_list, coffee_translations
+from data.data_for_tests import coffee_list, coffee_translations, coffee_names
 
 
 @mark.data_driven
@@ -30,3 +30,15 @@ def test_navigation_to_cart_page_from_menu_page(menu_page, cart_page):
     menu_page.open()
     menu_page.navigate_to_cart()
     expect(cart_page.page).to_have_url(cart_page.url)
+
+
+@mark.feature
+@mark.data_driven
+@mark.parametrize("coffee_type", coffee_names)
+def test_right_click_on_coffee_cup_opens_add_to_cart_dialog(menu_page, add_to_cart_dialog, coffee_type):
+    menu_page.open()
+    menu_page.click_on_coffee_cup(coffee_type, button="right")
+    expect(add_to_cart_dialog.popup).to_be_visible()
+    expect(add_to_cart_dialog.popup_text).to_have_text(f"Add {coffee_type} to the cart?")
+    add_to_cart_dialog.decline()
+    expect(add_to_cart_dialog.popup).not_to_be_visible()
