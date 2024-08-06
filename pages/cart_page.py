@@ -13,3 +13,6 @@ class CartPage(BasePage):
 
     def cart_content_item(self, coffee_type):
         return self.cart_content_items.get_by_text(coffee_type, exact=True)
+
+    def cart_content_item_counter(self, coffee_type):
+        return self.cart_content_items.filter(has=self.page.get_by_text(coffee_type)).locator(".unit-desc")
