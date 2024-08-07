@@ -7,7 +7,11 @@ class AddToCartDialog:
 
         self.popup = page.get_by_role("dialog")
         self.popup_text = self.popup.get_by_role("paragraph")
+        self.popup_accept_button = self.popup.get_by_role("button", name="yes")
         self.popup_decline_button = self.popup.get_by_role("button", name="no")
+
+    def accept(self):
+        self.popup_accept_button.click()
 
     def decline(self):
         self.popup_decline_button.click()
