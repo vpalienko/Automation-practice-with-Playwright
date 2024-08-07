@@ -43,3 +43,22 @@ def test_right_click_on_coffee_cup_opens_add_to_cart_dialog(menu_page, add_to_ca
     expect(add_to_cart_dialog.popup_text).to_have_text(f"Add {coffee_type} to the cart?")
     add_to_cart_dialog.decline()
     expect(add_to_cart_dialog.popup).not_to_be_visible()
+
+
+@mark.feature
+@mark.data_driven
+@mark.parametrize("coffee_type, coffee_price", coffee_list)
+def test_add_coffee_to_cart_via_add_to_cart_dialog(menu_page, cart_page, add_to_cart_dialog, coffee_type, coffee_price):
+    menu_page.open()
+    menu_page.click_on_coffee_cup(coffee_type, button="right")
+    expect(add_to_cart_dialog.popup).to_be_visible()
+    expect(add_to_cart_dialog.popup_text).to_have_text(f"Add {coffee_type} to the cart?")
+    add_to_cart_dialog.accept()
+    expect(add_to_cart_dialog.popup).not_to_be_visible()
+    expect(menu_page.cart_navbar_item).to_have_text("cart (1)")
+    expect(menu_page.total_price).to_have_text(f"Total: {coffee_price}")
+    menu_page.navigate_to_cart()
+    expect(cart_page.cart_content_item(coffee_type)).to_be_visible()
+    expect(cart_page.cart_content_item(coffee_type)).to_have_count(1)
+    expect(cart_page.cart_content_item_counter(coffee_type)).to_have_text(f"{coffee_price} x 1")
+    expect(cart_page.total_price).to_have_text(f"Total: {coffee_price}")
