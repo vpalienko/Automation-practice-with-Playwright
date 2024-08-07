@@ -9,7 +9,7 @@ class BasePage:
 
         self.menu_navbar_item = page.get_by_role("link", name="menu page")
         self.cart_navbar_item = page.get_by_role("link", name="cart page")
-        self.total_price = page.get_by_role("button", name="checkout")
+        self.total_price_button = page.get_by_role("button", name="checkout")
 
     def open(self):
         self.page.goto(self.url)

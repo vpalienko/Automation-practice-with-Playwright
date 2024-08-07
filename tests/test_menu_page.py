@@ -9,12 +9,12 @@ def test_add_coffee_to_cart(menu_page, cart_page, coffee_type, coffee_price):
     menu_page.open()
     menu_page.click_on_coffee_cup(coffee_type)
     expect(menu_page.cart_navbar_item).to_have_text("cart (1)")
-    expect(menu_page.total_price).to_have_text(f"Total: {coffee_price}")
+    expect(menu_page.total_price_button).to_have_text(f"Total: {coffee_price}")
     menu_page.navigate_to_cart()
     expect(cart_page.cart_content_item(coffee_type)).to_be_visible()
     expect(cart_page.cart_content_item(coffee_type)).to_have_count(1)
     expect(cart_page.cart_content_item_counter(coffee_type)).to_have_text(f"{coffee_price} x 1")
-    expect(cart_page.total_price).to_have_text(f"Total: {coffee_price}")
+    expect(cart_page.total_price_button).to_have_text(f"Total: {coffee_price}")
 
 
 @mark.feature
@@ -56,9 +56,9 @@ def test_add_coffee_to_cart_via_add_to_cart_dialog(menu_page, cart_page, add_to_
     add_to_cart_dialog.accept()
     expect(add_to_cart_dialog.popup).not_to_be_visible()
     expect(menu_page.cart_navbar_item).to_have_text("cart (1)")
-    expect(menu_page.total_price).to_have_text(f"Total: {coffee_price}")
+    expect(menu_page.total_price_button).to_have_text(f"Total: {coffee_price}")
     menu_page.navigate_to_cart()
     expect(cart_page.cart_content_item(coffee_type)).to_be_visible()
     expect(cart_page.cart_content_item(coffee_type)).to_have_count(1)
     expect(cart_page.cart_content_item_counter(coffee_type)).to_have_text(f"{coffee_price} x 1")
-    expect(cart_page.total_price).to_have_text(f"Total: {coffee_price}")
+    expect(cart_page.total_price_button).to_have_text(f"Total: {coffee_price}")
