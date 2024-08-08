@@ -62,3 +62,10 @@ def test_add_coffee_to_cart_via_add_to_cart_dialog(menu_page, cart_page, add_to_
     expect(cart_page.cart_content_item(coffee_type)).to_have_count(1)
     expect(cart_page.cart_content_item_counter(coffee_type)).to_have_text(f"{coffee_price} x 1")
     expect(cart_page.total_price_button).to_have_text(f"Total: {coffee_price}")
+
+
+@mark.smoke
+def test_total_price_is_present_and_is_zero_by_default(menu_page):
+    menu_page.open()
+    expect(menu_page.total_price_button).to_be_visible()
+    expect(menu_page.total_price_button).to_have_text("Total: $0.00")
