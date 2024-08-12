@@ -2,10 +2,10 @@
 **Software to be tested:** https://coffee-cart.app/
 
 ### Installation:
-1. install python 3.10 or higher
-2. activate virtual environment
-3. install all dependencies: `pip install -r requirements.txt`
-4. install Playwright browsers: `playwright install`
+1. Install python 3.10 or higher
+2. Activate virtual environment
+3. Install all dependencies: `pip install -r requirements.txt`
+4. Install Playwright browsers: `playwright install`
 
 ### Run tests:
 run `pytest` to run all tests in the project
