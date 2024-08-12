@@ -11,7 +11,7 @@ def test_cart_is_empty_by_default(cart_page):
 
 
 @mark.smoke
-def test_navigation_to_menu_page_from_cart_page(cart_page, menu_page):
+def test_navigation_to_menu_page_from_cart_page(cart_page, menu_page, page):
     cart_page.open()
     cart_page.navigate_to_menu()
-    expect(menu_page.page).to_have_url(menu_page.url)
+    expect(page).to_have_url(menu_page.url)
