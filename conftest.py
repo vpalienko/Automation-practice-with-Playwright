@@ -21,7 +21,7 @@ def add_to_cart_dialog(page: Page):
     return AddToCartDialog(page)
 
 
-@fixture
-def add_one_coffee_to_cart(menu_page):
+@fixture(params=[coffee_names[0]])
+def add_one_coffee_to_cart(menu_page, request):
     menu_page.open()
-    menu_page.click_on_coffee_cup(coffee_names[0])
+    menu_page.click_on_coffee_cup(request.param)
