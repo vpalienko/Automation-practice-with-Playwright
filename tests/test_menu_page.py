@@ -69,3 +69,13 @@ def test_total_price_is_present_and_is_zero_by_default(menu_page):
     menu_page.open()
     expect(menu_page.total_price_button).to_be_visible()
     expect(menu_page.total_price_button).to_have_text("Total: $0.00")
+
+
+@mark.feature
+@mark.usefixtures("add_one_coffee_to_cart")
+def test_hover_over_total_price_to_show_cart_preview(menu_page):
+    menu_page.hover_over_total_price_button()
+    expect(menu_page.cart_preview).to_be_visible()
+    expect(menu_page.cart_preview_content).to_have_count(1)
+    menu_page.remove_hover_from_total_price_button()
+    expect(menu_page.cart_preview).not_to_be_visible()
