@@ -89,3 +89,11 @@ def test_add_and_remove_coffee_via_cart_preview(menu_page):
     expect(menu_page.cart_preview_content).to_contain_text("x 2")
     menu_page.remove_one_coffee_from_cart_preview()
     expect(menu_page.cart_preview_content).to_contain_text("x 1")
+
+
+@mark.feature
+@mark.usefixtures("add_one_coffee_to_cart")
+def test_cart_preview_is_closed_if_last_item_is_removed(menu_page):
+    menu_page.hover_over_total_price_button()
+    menu_page.remove_one_coffee_from_cart_preview()
+    expect(menu_page.cart_preview).not_to_be_visible()
