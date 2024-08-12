@@ -8,11 +8,11 @@ class CartPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
 
-        self.cart_content_items = page.get_by_role("list").filter(has=page.locator(".list-item"))
+        self.cart_content = page.get_by_role("list").filter(has=page.locator(".list-item"))
         self.empty_cart_info_message = page.get_by_text("No coffee")
 
     def cart_content_item(self, coffee_type):
-        return self.cart_content_items.get_by_text(coffee_type, exact=True)
+        return self.cart_content.get_by_text(coffee_type, exact=True)
 
     def cart_content_item_counter(self, coffee_type):
-        return self.cart_content_items.filter(has=self.page.get_by_text(coffee_type)).locator(".unit-desc")
+        return self.cart_content.filter(has=self.page.get_by_text(coffee_type)).locator(".unit-desc")
