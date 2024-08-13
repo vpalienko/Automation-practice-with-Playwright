@@ -15,7 +15,7 @@ class MenuPage(BasePage):
         self.cart_preview_remove_button = self.cart_preview.get_by_role("button", name="remove one")
 
     def click_on_coffee_cup(self, coffee_type, **kwargs):
-        self.page.get_by_label(coffee_type, exact=True).click(**kwargs)
+        self.coffee_cups.get_by_label(coffee_type, exact=True).click(**kwargs)
 
     def coffee_cup_title(self, coffee_type):
         return self.coffee_cups.filter(has=self.page.get_by_label(coffee_type, exact=True)).get_by_role("heading")
