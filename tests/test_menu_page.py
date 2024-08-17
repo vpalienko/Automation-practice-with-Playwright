@@ -85,6 +85,15 @@ def test_cart_preview_is_not_shown_if_coffee_is_not_added(menu_page):
 
 
 @mark.feature
+@mark.parametrize("add_one_coffee_to_cart", coffee_names, indirect=True)
+def test_added_coffee_is_displayed_in_cart_preview(menu_page, add_one_coffee_to_cart):
+    coffee = add_one_coffee_to_cart
+    menu_page.hover_over_total_price_button()
+    expect(menu_page.cart_preview_content).to_have_count(1)
+    expect(menu_page.get_cart_preview_number_of_units(coffee)).to_have_text(f"{coffee} x 1")
+
+
+@mark.feature
 def test_add_and_remove_coffee_via_cart_preview(menu_page, add_one_coffee_to_cart):
     coffee = add_one_coffee_to_cart
     menu_page.hover_over_total_price_button()
