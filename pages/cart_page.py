@@ -11,8 +11,8 @@ class CartPage(BasePage):
         self.cart_content = page.get_by_role("list").filter(has=page.locator(".list-item"))
         self.empty_cart_info_message = page.get_by_text("No coffee")
 
-    def cart_content_item(self, coffee_type):
+    def get_content_item(self, coffee_type):
         return self.cart_content.get_by_text(coffee_type, exact=True)
 
-    def cart_content_item_counter(self, coffee_type):
+    def get_section_with_number_of_units(self, coffee_type):
         return self.cart_content.filter(has=self.page.get_by_text(coffee_type)).locator(".unit-desc")
