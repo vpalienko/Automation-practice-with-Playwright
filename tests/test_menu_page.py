@@ -78,6 +78,13 @@ def test_hover_over_total_price_button_to_show_cart_preview(menu_page):
 
 
 @mark.feature
+def test_cart_preview_is_not_shown_if_coffee_is_not_added(menu_page):
+    menu_page.open()
+    menu_page.hover_over_total_price_button()
+    expect(menu_page.cart_preview).not_to_be_visible()
+
+
+@mark.feature
 def test_add_and_remove_coffee_via_cart_preview(menu_page, add_one_coffee_to_cart):
     coffee = add_one_coffee_to_cart
     menu_page.hover_over_total_price_button()
