@@ -8,7 +8,7 @@ class CartPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
 
-        self.cart_content = page.get_by_role("list").filter(has=page.locator(".list-item"))
+        self.cart_content = page.get_by_role("list").locator(".list-item")
         self.empty_cart_info_message = page.get_by_text("No coffee")
 
     def get_content_item(self, coffee_type):
