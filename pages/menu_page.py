@@ -10,9 +10,7 @@ class MenuPage(BasePage):
 
         self.coffee_cups = page.get_by_role("listitem").filter(has=page.locator(".cup"))
         self.cart_preview = page.locator(".pay-container .cart-preview")
-        self.cart_preview_content = page.get_by_role("list").filter(has=page.locator(".list-item"))
-        self.cart_preview_add_button = self.cart_preview.get_by_role("button", name="add one")
-        self.cart_preview_remove_button = self.cart_preview.get_by_role("button", name="remove one")
+        self.cart_preview_content = self.cart_preview.get_by_role("listitem")
 
     def click_on_cup(self, coffee_type, **kwargs):
         self.coffee_cups.get_by_label(coffee_type, exact=True).click(**kwargs)
@@ -29,8 +27,16 @@ class MenuPage(BasePage):
     def remove_hover_from_total_price_button(self):
         self.coffee_cups.first.hover()
 
-    def add_one_more_coffee_via_cart_preview(self):
-        self.cart_preview_add_button.click()
+    def get_cart_preview_content_item(self, coffee_type):
+        return self.cart_preview_content.filter(has=self.page.get_by_text(coffee_type, exact=True))
 
-    def remove_one_coffee_from_cart_preview(self):
-        self.cart_preview_remove_button.click()
+    def get_cart_preview_number_of_units(self, coffee_type):
+        return self.get_cart_preview_content_item(coffee_type).locator("div", has=self.page.locator(".unit-desc"))
+
+    def add_via_cart_preview_one_more_unit_of_(self, coffee_type):
+        coffee_item = self.get_cart_preview_content_item(coffee_type)
+        coffee_item.get_by_role("button", name="add one").click()
+
+    def remove_via_cart_preview_one_unit_of_(self, coffee_type):
+        coffee_item = self.get_cart_preview_content_item(coffee_type)
+        coffee_item.get_by_role("button", name="remove one").click()
