@@ -1,6 +1,4 @@
-from pytest import mark, param
-
-coffee_list = [param("Espresso", "$10.00", marks=mark.smoke),
+coffee_list = [("Espresso", "$10.00"),
                ("Espresso Macchiato", "$12.00"),
                ("Cappuccino", "$19.00"),
                ("Mocha", "$8.00"),
