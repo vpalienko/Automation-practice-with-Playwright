@@ -3,6 +3,7 @@ from pytest import mark
 from data.data_for_tests import coffee_list, coffee_translations, coffee_names
 
 
+@mark.smoke
 @mark.parametrize("coffee, price", coffee_list)
 def test_add_coffee_to_cart(menu_page, cart_page, coffee, price):
     menu_page.open()
@@ -42,6 +43,7 @@ def test_right_click_on_coffee_cup_opens_add_to_cart_dialog(menu_page, add_to_ca
     expect(add_to_cart_dialog.popup).not_to_be_visible()
 
 
+@mark.smoke
 @mark.feature
 @mark.parametrize("coffee, price", coffee_list)
 def test_add_coffee_to_cart_via_add_to_cart_dialog(menu_page, cart_page, add_to_cart_dialog, coffee, price):
