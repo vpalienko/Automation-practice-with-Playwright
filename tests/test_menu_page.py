@@ -4,6 +4,20 @@ from data.data_for_tests import coffee_list, coffee_translations, coffee_names
 
 
 @mark.smoke
+def test_total_price_is_present_and_is_zero_by_default(menu_page):
+    menu_page.open()
+    expect(menu_page.total_price_button).to_be_visible()
+    expect(menu_page.total_price_button).to_have_text("Total: $0.00")
+
+
+@mark.smoke
+def test_navigation_to_cart_page_from_menu_page(menu_page, cart_page, page):
+    menu_page.open()
+    menu_page.navigate_to_cart()
+    expect(page).to_have_url(cart_page.url)
+
+
+@mark.smoke
 @mark.parametrize("coffee, price", coffee_list)
 def test_add_coffee_to_cart(menu_page, cart_page, coffee, price):
     menu_page.open()
@@ -15,20 +29,6 @@ def test_add_coffee_to_cart(menu_page, cart_page, coffee, price):
     expect(cart_page.get_content_item(coffee)).to_have_count(1)
     expect(cart_page.get_section_with_number_of_units(coffee)).to_have_text(f"{price} x 1")
     expect(cart_page.total_price_button).to_have_text(f"Total: {price}")
-
-
-@mark.smoke
-def test_navigation_to_cart_page_from_menu_page(menu_page, cart_page, page):
-    menu_page.open()
-    menu_page.navigate_to_cart()
-    expect(page).to_have_url(cart_page.url)
-
-
-@mark.smoke
-def test_total_price_is_present_and_is_zero_by_default(menu_page):
-    menu_page.open()
-    expect(menu_page.total_price_button).to_be_visible()
-    expect(menu_page.total_price_button).to_have_text("Total: $0.00")
 
 
 @mark.feature
