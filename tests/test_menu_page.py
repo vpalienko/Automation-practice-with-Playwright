@@ -1,6 +1,13 @@
 from playwright.sync_api import expect
 from pytest import mark
-from data.data_for_tests import coffee_list, coffee_translations, coffee_names
+from data.data_for_tests import coffee_list, coffee_translations, coffee_names, number_of_available_coffee
+
+
+def test_all_available_types_of_coffee_are_present_on_menu_page(menu_page):
+    menu_page.open()
+    expect(menu_page.menu_content).to_be_visible()
+    expect(menu_page.coffee_cups).to_have_count(number_of_available_coffee)
+    expect(menu_page.coffee_cup_titles).to_contain_text(coffee_names)
 
 
 @mark.smoke
