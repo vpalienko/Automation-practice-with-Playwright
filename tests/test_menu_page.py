@@ -3,6 +3,7 @@ from pytest import mark
 from data.data_for_tests import coffee_list, coffee_translations, coffee_names, number_of_available_coffee
 
 
+@mark.smoke
 def test_all_available_types_of_coffee_are_present_on_menu_page(menu_page):
     menu_page.open()
     expect(menu_page.menu_content).to_be_visible()
