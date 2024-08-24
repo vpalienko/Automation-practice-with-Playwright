@@ -27,3 +27,5 @@ coffee_names = ["Espresso",
                 "Cafe Latte",
                 "Espresso Con Panna",
                 "Cafe Breve"]
+
+number_of_available_coffee = len(coffee_names)
