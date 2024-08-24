@@ -33,6 +33,7 @@ def test_add_coffee_to_cart(menu_page, cart_page, coffee, price):
     expect(menu_page.cart_navbar_item).to_have_text("cart (1)")
     expect(menu_page.total_price_button).to_have_text(f"Total: {price}")
     menu_page.navigate_to_cart()
+    expect(cart_page.cart_navbar_item).to_have_text("cart (1)")
     expect(cart_page.get_content_item(coffee)).to_be_visible()
     expect(cart_page.get_content_item(coffee)).to_have_count(1)
     expect(cart_page.get_section_with_number_of_units(coffee)).to_have_text(f"{price} x 1")
