@@ -8,7 +8,9 @@ class MenuPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
 
+        self.menu_content = page.get_by_role("list").filter(has=page.locator(".cup"))
         self.coffee_cups = page.get_by_role("listitem").filter(has=page.locator(".cup"))
+        self.coffee_cup_titles = self.coffee_cups.get_by_role("heading")
         self.cart_preview = page.locator(".pay-container .cart-preview")
         self.cart_preview_content = self.cart_preview.get_by_role("listitem")
 
