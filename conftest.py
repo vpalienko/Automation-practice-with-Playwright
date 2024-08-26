@@ -27,3 +27,10 @@ def add_one_coffee_to_cart(menu_page, request):
     coffee = request.param
     menu_page.click_on_cup(coffee)
     return coffee
+
+
+@fixture
+def add_all_coffee_to_cart(menu_page):
+    menu_page.open()
+    for coffee in coffee_names:
+        menu_page.click_on_cup(coffee)
