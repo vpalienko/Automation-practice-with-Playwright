@@ -13,6 +13,9 @@ class MenuPage(BasePage):
         self.coffee_cup_titles = self.coffee_cups.get_by_role("heading")
         self.cart_preview = page.locator(".pay-container .cart-preview")
         self.cart_preview_content = self.cart_preview.get_by_role("listitem")
+        self.promo_coffee_popup = page.locator(".promo")
+        self.promo_coffee_popup_accept_button = self.promo_coffee_popup.get_by_role("button", name="yes")
+        self.promo_coffee_popup_skip_button = self.promo_coffee_popup.get_by_role("button", name="skip")
 
     def click_on_cup(self, coffee_type, **kwargs):
         self.coffee_cups.get_by_label(coffee_type, exact=True).click(**kwargs)
@@ -42,3 +45,9 @@ class MenuPage(BasePage):
     def remove_via_cart_preview_one_unit_of_(self, coffee_type):
         coffee_item = self.get_cart_preview_content_item(coffee_type)
         coffee_item.get_by_role("button", name="remove one").click()
+
+    def accept_promo_coffee(self):
+        self.promo_coffee_popup_accept_button.click()
+
+    def skip_promo_coffee(self):
+        self.promo_coffee_popup_skip_button.click()
