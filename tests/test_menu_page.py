@@ -122,3 +122,17 @@ class TestCartPreview:
         menu_page.hover_over_total_price_button()
         menu_page.remove_via_cart_preview_one_unit_of_(coffee)
         expect(menu_page.cart_preview).not_to_be_visible()
+
+
+@mark.feature
+class TestPromoCoffeePopup:
+
+    @mark.smoke
+    @mark.parametrize("coffee", coffee_names)
+    def test_promo_coffee_popup_appears_after_adding_third_coffee_unit_to_cart(self, menu_page, coffee):
+        menu_page.open()
+        menu_page.click_on_cup(coffee, click_count=3)
+        expect(menu_page.promo_coffee_popup).to_be_visible()
+        expect(menu_page.promo_coffee_popup).to_contain_text("It's your lucky day! Get an extra cup of Mocha for $4.")
+        menu_page.skip_promo_coffee()
+        expect(menu_page.promo_coffee_popup).not_to_be_visible()
