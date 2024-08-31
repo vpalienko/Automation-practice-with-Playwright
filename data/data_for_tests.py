@@ -1,3 +1,5 @@
+from random import choice
+
 coffee_list = [("Espresso", "$10.00"),
                ("Espresso Macchiato", "$12.00"),
                ("Cappuccino", "$19.00"),
@@ -29,3 +31,7 @@ coffee_names = ["Espresso",
                 "Cafe Breve"]
 
 number_of_available_coffee = len(coffee_names)
+
+
+def get_random_coffee_type():
+    return choice(coffee_names)
