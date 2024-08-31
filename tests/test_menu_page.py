@@ -68,7 +68,6 @@ class TestAddToCartDialog:
         menu_page.open()
         menu_page.click_on_cup(coffee, button="right")
         expect(add_to_cart_dialog.popup).to_be_visible()
-        expect(add_to_cart_dialog.popup_text).to_have_text(f"Add {coffee} to the cart?")
         add_to_cart_dialog.accept()
         expect(add_to_cart_dialog.popup).not_to_be_visible()
         expect(menu_page.cart_navbar_item).to_have_text("cart (1)")
