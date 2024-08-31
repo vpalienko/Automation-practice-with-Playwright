@@ -127,10 +127,13 @@ class TestCartPreview:
 class TestPromoCoffeeBanner:
 
     @mark.smoke
-    @mark.parametrize("coffee", coffee_names)
-    def test_promo_coffee_banner_appears_after_adding_third_coffee_unit_to_cart(self, menu_page, coffee):
+    def test_promo_coffee_banner_appears_after_adding_third_coffee_to_cart(self, menu_page):
         menu_page.open()
-        menu_page.click_on_cup(coffee, click_count=3)
+        menu_page.click_on_any_coffee_cup()
+        expect(menu_page.promo_coffee_banner).not_to_be_visible()
+        menu_page.click_on_any_coffee_cup()
+        expect(menu_page.promo_coffee_banner).not_to_be_visible()
+        menu_page.click_on_any_coffee_cup()
         expect(menu_page.promo_coffee_banner).to_be_visible()
         expect(menu_page.promo_coffee_banner).to_contain_text("It's your lucky day! Get an extra cup of Mocha for $4.")
         menu_page.skip_promo_coffee()
