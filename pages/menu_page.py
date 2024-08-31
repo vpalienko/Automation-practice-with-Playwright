@@ -18,8 +18,11 @@ class MenuPage(BasePage):
         self.promo_coffee_banner_accept_button = self.promo_coffee_banner.get_by_role("button", name="yes")
         self.promo_coffee_banner_skip_button = self.promo_coffee_banner.get_by_role("button", name="skip")
 
-    def click_on_cup(self, coffee_type, **kwargs):
-        self.coffee_cups.get_by_label(coffee_type, exact=True).click(**kwargs)
+    def click_on_cup(self, coffee_type):
+        self.coffee_cups.get_by_label(coffee_type, exact=True).click()
+
+    def right_button_click_on_cup(self, coffee_type):
+        self.coffee_cups.get_by_label(coffee_type, exact=True).click(button="right")
 
     def click_on_any_coffee_cup(self, number_of_selected_cups=1):
         for _ in range(number_of_selected_cups):

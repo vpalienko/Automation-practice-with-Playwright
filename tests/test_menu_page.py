@@ -54,9 +54,9 @@ class TestChineseTitleTranslation:
 class TestAddToCartDialog:
 
     @mark.parametrize("coffee", coffee_names)
-    def test_right_click_on_coffee_cup_opens_add_to_cart_dialog(self, menu_page, add_to_cart_dialog, coffee):
+    def test_right_button_click_on_coffee_cup_opens_add_to_cart_dialog(self, menu_page, add_to_cart_dialog, coffee):
         menu_page.open()
-        menu_page.click_on_cup(coffee, button="right")
+        menu_page.right_button_click_on_cup(coffee)
         expect(add_to_cart_dialog.popup).to_be_visible()
         expect(add_to_cart_dialog.popup_text).to_have_text(f"Add {coffee} to the cart?")
         add_to_cart_dialog.decline()
@@ -66,7 +66,7 @@ class TestAddToCartDialog:
     @mark.parametrize("coffee, price", coffee_list)
     def test_add_coffee_to_cart_via_add_to_cart_dialog(self, menu_page, cart_page, add_to_cart_dialog, coffee, price):
         menu_page.open()
-        menu_page.click_on_cup(coffee, button="right")
+        menu_page.right_button_click_on_cup(coffee)
         expect(add_to_cart_dialog.popup).to_be_visible()
         add_to_cart_dialog.accept()
         expect(add_to_cart_dialog.popup).not_to_be_visible()
