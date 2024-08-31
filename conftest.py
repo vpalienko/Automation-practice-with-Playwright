@@ -31,6 +31,10 @@ def add_one_coffee_to_cart(menu_page, request):
 
 @fixture
 def add_all_coffee_to_cart(menu_page):
+    def promo_coffee_banner_handler():
+        menu_page.skip_promo_coffee()
+    menu_page.page.add_locator_handler(menu_page.promo_coffee_banner, promo_coffee_banner_handler)
+
     menu_page.open()
     for coffee in coffee_names:
         menu_page.click_on_cup(coffee)
