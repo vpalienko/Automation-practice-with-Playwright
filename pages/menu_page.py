@@ -1,4 +1,5 @@
 from playwright.sync_api import Page
+from data.data_for_tests import get_random_coffee_type
 from pages.base_page import BasePage
 
 
@@ -19,6 +20,10 @@ class MenuPage(BasePage):
 
     def click_on_cup(self, coffee_type, **kwargs):
         self.coffee_cups.get_by_label(coffee_type, exact=True).click(**kwargs)
+
+    def click_on_any_coffee_cup(self, number_of_selected_cups=1):
+        for _ in range(number_of_selected_cups):
+            self.coffee_cups.get_by_label(get_random_coffee_type(), exact=True).click()
 
     def get_cup_title_of_(self, coffee_type):
         return self.coffee_cups.filter(has=self.page.get_by_label(coffee_type, exact=True)).get_by_role("heading")
