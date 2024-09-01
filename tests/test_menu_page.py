@@ -109,7 +109,7 @@ class TestCartPreview:
         expect(menu_page.cart_preview_content).to_have_count(number_of_available_coffee)
         expect(menu_page.cart_preview_content).to_contain_text(sorted(coffee_names))
 
-    def test_add_and_remove_coffee_via_cart_preview(self, menu_page, add_one_coffee_to_cart):
+    def test_add_and_remove_coffee_unit_via_cart_preview(self, menu_page, add_one_coffee_to_cart):
         coffee = add_one_coffee_to_cart
         menu_page.hover_over_total_price_button()
         menu_page.add_via_cart_preview_one_more_unit_of_(coffee)
