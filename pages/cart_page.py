@@ -12,7 +12,7 @@ class CartPage(BasePage):
         self.empty_cart_info_message = page.get_by_text("No coffee")
 
     def get_content_item(self, coffee_type):
-        return self.cart_content.get_by_text(coffee_type, exact=True)
+        return self.cart_content.filter(has=self.page.get_by_text(coffee_type, exact=True))
 
     def get_section_with_number_of_units(self, coffee_type):
         return self.cart_content.filter(has=self.page.get_by_text(coffee_type, exact=True)).locator(".unit-desc")
