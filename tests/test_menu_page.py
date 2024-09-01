@@ -1,6 +1,7 @@
 from playwright.sync_api import expect
 from pytest import mark
-from data.data_for_tests import coffee_list, coffee_translations, coffee_names, number_of_available_coffee
+from data.data_for_tests import (coffee_list, coffee_translations, coffee_names, number_of_available_coffee,
+                                 discounted_coffee)
 
 
 @mark.smoke
@@ -128,6 +129,7 @@ class TestPromoCoffeeBanner:
 
     @mark.smoke
     def test_promo_coffee_banner_appears_after_adding_third_coffee_to_cart(self, menu_page):
+        coffee, price = discounted_coffee
         menu_page.open()
         menu_page.click_on_any_coffee_cup()
         expect(menu_page.promo_coffee_banner).not_to_be_visible()
@@ -135,7 +137,7 @@ class TestPromoCoffeeBanner:
         expect(menu_page.promo_coffee_banner).not_to_be_visible()
         menu_page.click_on_any_coffee_cup()
         expect(menu_page.promo_coffee_banner).to_be_visible()
-        expect(menu_page.promo_coffee_banner).to_contain_text("It's your lucky day! Get an extra cup of Mocha for $4.")
+        expect(menu_page.promo_coffee_banner).to_contain_text(f"Get an extra cup of {coffee} for {price}")
         menu_page.skip_promo_coffee()
         expect(menu_page.promo_coffee_banner).not_to_be_visible()
 

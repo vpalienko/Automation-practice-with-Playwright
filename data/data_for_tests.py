@@ -32,6 +32,8 @@ coffee_names = ["Espresso",
 
 number_of_available_coffee = len(coffee_names)
 
+discounted_coffee = ("Mocha", "$4")
+
 
 def get_random_coffee_type():
     return choice(coffee_names)
