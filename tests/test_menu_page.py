@@ -117,7 +117,7 @@ class TestCartPreview:
         menu_page.remove_via_cart_preview_one_unit_of_(coffee)
         expect(menu_page.get_cart_preview_number_of_units(coffee)).to_have_text(f"{coffee} x 1")
 
-    def test_cart_preview_is_closed_if_last_item_is_removed(self, menu_page, add_one_coffee_to_cart):
+    def test_cart_preview_is_closed_if_last_coffee_unit_is_removed(self, menu_page, add_one_coffee_to_cart):
         coffee = add_one_coffee_to_cart
         menu_page.hover_over_total_price_button()
         menu_page.remove_via_cart_preview_one_unit_of_(coffee)
