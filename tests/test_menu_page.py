@@ -155,3 +155,17 @@ class TestPromoCoffeeBanner:
         expect(menu_page.promo_coffee_banner).to_be_visible()
         menu_page.skip_promo_coffee()
         expect(menu_page.promo_coffee_banner).not_to_be_visible()
+
+    @mark.smoke
+    def test_add_promo_coffee_to_cart_via_promo_coffee_banner(self, menu_page, cart_page):
+        coffee, price = discounted_coffee
+        menu_page.open()
+        menu_page.click_on_any_coffee_cup(number_of_selected_cups=3)
+        expect(menu_page.promo_coffee_banner).to_be_visible()
+        menu_page.accept_promo_coffee()
+        expect(menu_page.promo_coffee_banner).not_to_be_visible()
+        expect(menu_page.cart_navbar_item).to_have_text("cart (4)")
+        menu_page.navigate_to_cart()
+        expect(cart_page.get_content_item(f"(Discounted) {coffee}")).to_be_visible()
+        expect(cart_page.get_content_item(f"(Discounted) {coffee}")).to_have_count(1)
+        expect(cart_page.get_section_with_number_of_units(f"(Discounted) {coffee}")).to_have_text(f"{price}.00 x 1")
