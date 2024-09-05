@@ -20,3 +20,7 @@ class CartPage(BasePage):
     def add_one_more_unit_of_(self, coffee_type):
         coffee_item = self.get_content_item(coffee_type)
         coffee_item.get_by_role("button", name="add one").click()
+
+    def remove_one_unit_of_(self, coffee_type):
+        coffee_item = self.get_content_item(coffee_type)
+        coffee_item.get_by_role("button", name="remove one").click()
