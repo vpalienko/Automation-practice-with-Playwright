@@ -24,3 +24,13 @@ def test_all_added_types_of_coffee_are_displayed_in_cart(menu_page, cart_page):
     expect(cart_page.cart_navbar_item).to_have_text(f"cart ({number_of_available_coffee})")
     expect(cart_page.cart_content).to_have_count(number_of_available_coffee)
     expect(cart_page.cart_content).to_contain_text(sorted(coffee_names))
+
+
+@mark.smoke
+def test_add_and_remove_coffee_unit_via_cart(menu_page, cart_page, add_one_coffee_to_cart):
+    coffee = add_one_coffee_to_cart
+    menu_page.navigate_to_cart()
+    cart_page.add_one_more_unit_of_(coffee)
+    expect(cart_page.get_section_with_number_of_units(coffee)).to_contain_text("x 2")
+    cart_page.remove_one_unit_of_(coffee)
+    expect(cart_page.get_section_with_number_of_units(coffee)).to_contain_text("x 1")
