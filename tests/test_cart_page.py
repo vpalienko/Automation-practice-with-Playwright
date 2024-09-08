@@ -34,3 +34,12 @@ def test_add_and_remove_coffee_unit_via_cart(menu_page, cart_page, add_one_coffe
     expect(cart_page.get_section_with_number_of_units(coffee)).to_contain_text("x 2")
     cart_page.remove_one_unit_of_(coffee)
     expect(cart_page.get_section_with_number_of_units(coffee)).to_contain_text("x 1")
+
+
+@mark.smoke
+def test_empty_cart_message_appears_if_last_coffee_unit_is_removed(menu_page, cart_page, add_one_coffee_to_cart):
+    coffee = add_one_coffee_to_cart
+    menu_page.navigate_to_cart()
+    cart_page.remove_one_unit_of_(coffee)
+    expect(cart_page.cart_content).not_to_be_visible()
+    expect(cart_page.empty_cart_info_message).to_be_visible()
