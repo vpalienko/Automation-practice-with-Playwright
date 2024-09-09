@@ -43,3 +43,11 @@ def test_empty_cart_message_appears_if_last_coffee_unit_is_removed(menu_page, ca
     cart_page.remove_one_unit_of_(coffee)
     expect(cart_page.cart_content).not_to_be_visible()
     expect(cart_page.empty_cart_info_message).to_be_visible()
+
+
+@mark.smoke
+def test_remove_coffee_from_cart(menu_page, cart_page, add_one_coffee_to_cart):
+    coffee = add_one_coffee_to_cart
+    menu_page.navigate_to_cart()
+    cart_page.remove_cart_item(coffee)
+    expect(cart_page.get_content_item(coffee)).not_to_be_visible()
