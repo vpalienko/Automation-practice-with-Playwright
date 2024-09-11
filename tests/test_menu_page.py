@@ -140,6 +140,8 @@ class TestPromoCoffeeBanner:
         menu_page.click_on_any_coffee_cup()
         expect(menu_page.promo_coffee_banner).to_be_visible()
         expect(menu_page.promo_coffee_banner).to_contain_text(f"Get an extra cup of {coffee} for {price}")
+        expect(menu_page.promo_coffee_banner_accept_button).to_be_visible()
+        expect(menu_page.promo_coffee_banner_skip_button).to_be_visible()
         menu_page.skip_promo_coffee()
         expect(menu_page.promo_coffee_banner).not_to_be_visible()
 
