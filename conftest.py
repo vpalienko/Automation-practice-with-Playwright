@@ -2,6 +2,7 @@ from playwright.sync_api import Page
 from pytest import fixture
 from data.data_for_tests import coffee_names
 from modals.add_to_cart_dialog import AddToCartDialog
+from modals.payment_details_dialog import PaymentDetailsDialog
 from pages.cart_page import CartPage
 from pages.menu_page import MenuPage
 
@@ -19,6 +20,11 @@ def cart_page(page: Page):
 @fixture
 def add_to_cart_dialog(page: Page):
     return AddToCartDialog(page)
+
+
+@fixture
+def payment_details_dialog(page: Page):
+    return PaymentDetailsDialog(page)
 
 
 @fixture(params=[coffee_names[0]])
