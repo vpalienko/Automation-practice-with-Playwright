@@ -19,3 +19,6 @@ class BasePage:
 
     def navigate_to_menu(self):
         self.menu_navbar_item.click()
+
+    def click_on_total_price_button(self):
+        self.total_price_button.click()
