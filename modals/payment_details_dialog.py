@@ -11,3 +11,6 @@ class PaymentDetailsDialog:
         self.email_field = self.popup.get_by_label("email")
         self.submit_button = self.popup.get_by_role("button", name="submit")
         self.close_button = self.popup.get_by_role("button", name="×")
+
+    def close(self):
+        self.close_button.click()
