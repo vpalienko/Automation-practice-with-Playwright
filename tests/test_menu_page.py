@@ -41,6 +41,20 @@ def test_add_coffee_to_cart(menu_page, cart_page, coffee, price):
     expect(cart_page.total_price_button).to_have_text(f"Total: {price}")
 
 
+@mark.smoke
+@mark.usefixtures("add_one_coffee_to_cart")
+def test_payment_dialog_is_opened_after_click_on_total_price_on_menu_page(menu_page, payment_details_dialog):
+    menu_page.click_on_total_price_button()
+    expect(payment_details_dialog.popup).to_be_visible()
+    expect(payment_details_dialog.popup_title).to_have_text("Payment details")
+    expect(payment_details_dialog.name_field).to_be_visible()
+    expect(payment_details_dialog.email_field).to_be_visible()
+    expect(payment_details_dialog.submit_button).to_be_visible()
+    expect(payment_details_dialog.close_button).to_be_visible()
+    payment_details_dialog.close()
+    expect(payment_details_dialog.popup).not_to_be_visible()
+
+
 @mark.feature
 class TestChineseTitleTranslation:
 
