@@ -60,3 +60,18 @@ def test_empty_cart_message_appears_if_last_item_is_removed(menu_page, cart_page
     cart_page.remove_cart_item(coffee)
     expect(cart_page.cart_content).not_to_be_visible()
     expect(cart_page.empty_cart_info_message).to_be_visible()
+
+
+@mark.smoke
+@mark.usefixtures("add_one_coffee_to_cart")
+def test_payment_dialog_is_opened_after_click_on_total_price_on_cart_page(menu_page, cart_page, payment_details_dialog):
+    menu_page.navigate_to_cart()
+    cart_page.click_on_total_price_button()
+    expect(payment_details_dialog.popup).to_be_visible()
+    expect(payment_details_dialog.popup_title).to_have_text("Payment details")
+    expect(payment_details_dialog.name_field).to_be_visible()
+    expect(payment_details_dialog.email_field).to_be_visible()
+    expect(payment_details_dialog.submit_button).to_be_visible()
+    expect(payment_details_dialog.close_button).to_be_visible()
+    payment_details_dialog.close()
+    expect(payment_details_dialog.popup).not_to_be_visible()
