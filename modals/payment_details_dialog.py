@@ -14,3 +14,6 @@ class PaymentDetailsDialog:
 
     def close(self):
         self.close_button.click()
+
+    def enter_name(self, name):
+        self.name_field.fill(name)
