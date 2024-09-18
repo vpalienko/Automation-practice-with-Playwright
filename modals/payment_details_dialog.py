@@ -17,3 +17,6 @@ class PaymentDetailsDialog:
 
     def enter_name(self, name):
         self.name_field.fill(name)
+
+    def enter_email(self, email):
+        self.email_field.fill(email)
