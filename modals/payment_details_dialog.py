@@ -20,3 +20,6 @@ class PaymentDetailsDialog:
 
     def enter_email(self, email):
         self.email_field.fill(email)
+
+    def submit(self):
+        self.submit_button.click()
