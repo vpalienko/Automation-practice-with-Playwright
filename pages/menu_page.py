@@ -17,6 +17,7 @@ class MenuPage(BasePage):
         self.promo_coffee_banner = page.locator(".promo")
         self.promo_coffee_banner_accept_button = self.promo_coffee_banner.get_by_role("button", name="yes")
         self.promo_coffee_banner_skip_button = self.promo_coffee_banner.get_by_role("button", name="skip")
+        self.purchase_message = page.locator(".snackbar.success")
 
     def click_on_cup(self, coffee_type):
         self.coffee_cups.get_by_label(coffee_type, exact=True).click()
@@ -59,3 +60,6 @@ class MenuPage(BasePage):
 
     def skip_promo_coffee(self):
         self.promo_coffee_banner_skip_button.click()
+
+    def wait_for_the_purchase_message_to_disappear(self, timeout=5000):
+        self.purchase_message.wait_for(state="hidden", timeout=timeout)
