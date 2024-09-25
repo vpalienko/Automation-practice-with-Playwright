@@ -4,6 +4,14 @@ from data.data_for_tests import coffee_names, number_of_available_coffee
 
 
 @mark.smoke
+def test_navbar_items_are_present_on_cart_page(cart_page):
+    cart_page.open()
+    expect(cart_page.menu_navbar_item).to_be_visible()
+    expect(cart_page.cart_navbar_item).to_be_visible()
+    expect(cart_page.cart_navbar_item).to_have_text("cart (0)")
+
+
+@mark.smoke
 def test_cart_is_empty_by_default(cart_page):
     cart_page.open()
     expect(cart_page.cart_content).not_to_be_visible()
