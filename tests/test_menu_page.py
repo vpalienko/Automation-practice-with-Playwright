@@ -5,6 +5,14 @@ from data.data_for_tests import (coffee_list, coffee_translations, coffee_names,
 
 
 @mark.smoke
+def test_navbar_items_are_present_on_menu_page(menu_page):
+    menu_page.open()
+    expect(menu_page.menu_navbar_item).to_be_visible()
+    expect(menu_page.cart_navbar_item).to_be_visible()
+    expect(menu_page.cart_navbar_item).to_have_text("cart (0)")
+
+
+@mark.smoke
 def test_all_available_types_of_coffee_are_present_on_menu_page(menu_page):
     menu_page.open()
     expect(menu_page.menu_content).to_be_visible()
