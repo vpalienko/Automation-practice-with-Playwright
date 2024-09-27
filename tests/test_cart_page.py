@@ -82,3 +82,19 @@ def test_payment_dialog_is_opened_after_click_on_total_price_on_cart_page(menu_p
     expect(payment_details_dialog.close_button).to_be_visible()
     payment_details_dialog.close()
     expect(payment_details_dialog.popup).not_to_be_visible()
+
+
+@mark.smoke
+@mark.usefixtures("add_one_coffee_to_cart")
+def test_submit_payment_on_cart_page(menu_page, cart_page, payment_details_dialog, page, faker):
+    menu_page.navigate_to_cart()
+    cart_page.click_on_total_price_button()
+    payment_details_dialog.enter_name(faker.name())
+    payment_details_dialog.enter_email(faker.email())
+    payment_details_dialog.submit()
+    expect(payment_details_dialog.popup).not_to_be_visible()
+    expect(page).to_have_url(menu_page.url)
+    expect(menu_page.purchase_message).to_be_visible()
+    expect(menu_page.purchase_message).to_have_text("Thanks for your purchase. Please check your email for payment.")
+    menu_page.wait_for_the_purchase_message_to_disappear()
+    expect(menu_page.purchase_message).not_to_be_visible()
