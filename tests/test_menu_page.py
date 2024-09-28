@@ -75,6 +75,8 @@ def test_submit_payment_on_menu_page(menu_page, payment_details_dialog, faker):
     expect(menu_page.purchase_message).to_have_text("Thanks for your purchase. Please check your email for payment.")
     menu_page.wait_for_the_purchase_message_to_disappear()
     expect(menu_page.purchase_message).not_to_be_visible()
+    expect(menu_page.cart_navbar_item).to_have_text("cart (0)")
+    expect(menu_page.total_price_button).to_have_text("Total: $0.00")
 
 
 @mark.feature
