@@ -79,6 +79,21 @@ def test_submit_payment_on_menu_page(menu_page, payment_details_dialog, faker):
     expect(menu_page.total_price_button).to_have_text("Total: $0.00")
 
 
+@mark.smoke
+@mark.parametrize("coffee", coffee_names)
+def test_place_an_order(menu_page, cart_page, payment_details_dialog, faker, coffee):
+    menu_page.open()
+    menu_page.click_on_cup(coffee)
+    menu_page.navigate_to_cart()
+    expect(cart_page.get_content_item(coffee)).to_be_visible()
+    cart_page.click_on_total_price_button()
+    expect(payment_details_dialog.popup).to_be_visible()
+    payment_details_dialog.enter_name(faker.name())
+    payment_details_dialog.enter_email(faker.email())
+    payment_details_dialog.submit()
+    expect(menu_page.purchase_message).to_be_visible()
+
+
 @mark.feature
 class TestChineseTitleTranslation:
 
